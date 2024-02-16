@@ -1,25 +1,15 @@
 const express = require('express');
 const router = express.Router();
-//const topicController = require('../../controllers/topic');
+const topicController = require('../../controllers/topic');
 
-router.get('/', (req, res) => {
-  res.send('Get topics');
-});
+router.get('/', topicController.getTopics);
 
-router.get('/:id', (req, res) => {
-  res.send('Get topic by id');
-});
+router.get('/:id', topicController.getTopicById);
 
-router.post('/', (req, res) => {
-  res.send('Create topic');
-});
+router.post('/', topicController.createTopic);
 
-router.put('/:id', (req, res) => {
-  res.send('Update topic');
-});
+router.put('/:id', topicController.updateTopic);
 
-router.delete('/:id', (req, res) => {
-  res.send('Delete topic');
-});
+router.delete('/:id', topicController.deleteTopic);
 
 module.exports = router;

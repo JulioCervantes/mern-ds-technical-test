@@ -1,25 +1,15 @@
 const express = require('express');
 const router = express.Router();
-//const contentController = require('../../controllers/content');
+const contentController = require('../../controllers/content');
 
-router.get('/', (req, res) => {
-  res.send('Get content');
-});
+router.get('/', contentController.getContents);
 
-router.get('/:id', (req, res) => {
-  res.send('Get content by id');
-});
+router.get('/:id', contentController.getContentById);
 
-router.post('/', (req, res) => {
-  res.send('Create content');
-});
+router.post('/', contentController.uploadContent);
 
-router.put('/:id', (req, res) => {
-  res.send('Update content');
-});
+router.put('/:id', contentController.updateContent);
 
-router.delete('/:id', (req, res) => {
-  res.send('Delete content');
-});
+router.delete('/:id', contentController.deleteContent);
 
 module.exports = router;

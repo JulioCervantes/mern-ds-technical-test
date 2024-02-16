@@ -1,5 +1,5 @@
 const User = require('../../models/User');
-const { token } = require('../../utils/token');
+const token = require('../../utils/token');
 const { JWT_SALT_LENGTH } = require('./constants');
 
 const userController = {

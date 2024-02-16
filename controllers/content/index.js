@@ -1,6 +1,6 @@
 const Content = require('../../models/Content');
 const Topic = require('../../models/Topic');
-const { token } = require('../../utils/token');
+const token = require('../../utils/token');
 
 const contentController = {
   getContents: async (req, res) => {
@@ -33,12 +33,18 @@ const contentController = {
       res.status(400).send(error);
     }
   },
-  updateContent: async (req, res) => {
+  updateContent: async (req, res, fileBuffer =  upload.single('data')) => {
     try {
       const { id } = req.params;
-      const { title, topicId, data } = req.body;
-      const content = await Topic.findByIdAndUpdate(id, { title, topicId, data });
-      res.status(200).send(content);
+      const { title, topicId } = req.body;
+      let dataChanged = req.body.data || fileBuffer;
+      let newContent;
+      if(dataChanged){
+        newContent = await Topic.findByIdAndUpdate(id, { title, topicId, summary, data: dataChanged })
+      } else {
+        newContent = await Topic.findByIdAndUpdate(id, { title, topicId, summary });
+      }
+      res.status(200).send(newContent);
     } catch (error) {
       res.status(400).send(error);
     }

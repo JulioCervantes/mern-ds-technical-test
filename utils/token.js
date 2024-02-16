@@ -1,4 +1,4 @@
-export const token = {
+const token = {
   get: (payload) => {
     return jwt.sign({
       role: payload.permissions,
@@ -12,3 +12,5 @@ export const token = {
     return jwt.verify(token, process.env.JWT_SECRET);
   }
 };
+
+module.exports = token;
