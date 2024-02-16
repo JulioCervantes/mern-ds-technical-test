@@ -12,21 +12,23 @@ const topicSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  canRead: {
-    admin: { type: Boolean, default: true, inmutable: true },
-    reader: { type: Boolean, default: true },
-    creator: { type: Boolean, default: false },
+  permissions: {
+    canRead: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: true },
+      creator: { type: Boolean, default: false },
+    },
+    canCreate: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: false },
+      creator: { type: Boolean, default: false },
+    },
+    canUpdate: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: false },
+      creator: { type: Boolean, default: true },
+    },
   },
-  canCreate: {
-    admin: { type: Boolean, default: true, inmutable: true },
-    reader: { type: Boolean, default: false },
-    creator: { type: Boolean, default: false },
-  },
-  canUpdate: {
-    admin: { type: Boolean, default: true, inmutable: true },
-    reader: { type: Boolean, default: false },
-    creator: { type: Boolean, default: true },
-  },	
 });
 
 topicSchema.plugin(timestamp);

@@ -10,7 +10,7 @@ const contentTypeSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  type: {
+  sourceType: {
     type: String,
     required: true,
     enum: ['image', 'video', 'text'],

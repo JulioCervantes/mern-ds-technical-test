@@ -4,6 +4,8 @@ const auth = require('./routes/auth');
 const categoryRoutes = require('./routes/category');
 const topicRoutes = require('./routes/topic');
 const contentRoutes = require('./routes/content');
+const errorHandler = require('./middlewares/error-handler');
+const notFound = require('./middlewares/not-found');
 
 require('dotenv').config();
 
@@ -27,10 +29,8 @@ mongoose.connect(process.env.MONGODB_URI/*
   .then(() => console.log('Successful connection to the db'))
   .catch(err => console.error('Failed to connect to MongoDB', err));
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Internal Server Error');
-});
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

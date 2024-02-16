@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const timestamp = require('mongoose-timestamp');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -25,6 +27,19 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.plugin(timestamp);
+
+userSchema.statics.findByCredentials = async (email, password) => {
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error('User not found');
+  }
+  const validPassword = await bcrypt.compare(password, user.password);
+  if (!validPassword) {
+    throw new Error('Invalid User credentials');
+  }
+  return user;
+}
+
 
 const User = mongoose.model('User', userSchema);
 

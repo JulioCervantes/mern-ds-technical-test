@@ -7,6 +7,9 @@ const contentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  summary: {
+    type: String,
+  },
   topicId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Topic',
@@ -21,7 +24,7 @@ const contentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-};
+});
 
 contentSchema.plugin(timestamp);
 contentSchema.plugin(deleteStrategy, { overrideMethods: 'all' });
