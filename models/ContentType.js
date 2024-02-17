@@ -16,6 +16,28 @@ const contentTypeSchema = new mongoose.Schema({
     enum: ['image', 'video', 'text'],
     default: 'text',
   },
+  permissions: {
+    canRead: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: true },
+      creator: { type: Boolean, default: true },
+    },
+    canCreate: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: false },
+      creator: { type: Boolean, default: false },
+    },
+    canUpdate: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: false },
+      creator: { type: Boolean, default: false },
+    },
+    canDelete: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: false },
+      creator: { type: Boolean, default: false },
+    },
+  },
 });
 
 contentTypeSchema.plugin(timestamp);

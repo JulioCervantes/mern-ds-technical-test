@@ -24,6 +24,28 @@ const contentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  permissions: {
+    canRead: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: true },
+      creator: { type: Boolean, default: true },
+    },
+    canCreate: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: false },
+      creator: { type: Boolean, default: true },
+    },
+    canUpdate: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: false },
+      creator: { type: Boolean, default: true },
+    },
+    canDelete: {
+      admin: { type: Boolean, default: true, inmutable: true },
+      reader: { type: Boolean, default: false },
+      creator: { type: Boolean, default: false },
+    },
+  },
 });
 
 contentSchema.plugin(timestamp);

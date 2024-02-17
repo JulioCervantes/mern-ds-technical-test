@@ -1,7 +1,9 @@
+const jwt = require("jsonwebtoken");
+
 const token = {
   get: (payload) => {
     return jwt.sign({
-      role: payload.permissions,
+      role: payload.role,
       username: payload.username,
       email: payload.email,
       userId: payload._id,
