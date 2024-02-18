@@ -8,7 +8,7 @@ const upload = multer({ storage: storage })
 
 router.get('/', contentController.getContents);
 
-router.get('/:id', contentController.getContentById);
+router.get('/:title', contentController.getContentByTitle);
 
 router.post('/',  upload.single('data'), contentController.uploadContent);
 

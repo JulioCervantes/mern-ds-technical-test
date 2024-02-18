@@ -20,6 +20,12 @@ const contentSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  contentType: {
+    type: String,
+    required: true,
+    enum: ['image', 'video', 'text'],
+    default: 'text',
+  },
   data: {
     type: String,
     required: true,

@@ -3,12 +3,32 @@ const Topic = require('../../models/Topic');
 const topicController = {
   getTopics: async (req, res) => {
     try {
-      const topics = await Topic.find().populate('contentTypes');
-      res.send(topics);
+      if(req.query.name) {
+        const { name } = req.query;
+        console.log({name});
+        const topic = await Topic.find({name : new RegExp(name, 'i')}).populate('contentTypes');
+        console.log(topic);
+        res.send(topic);
+      }else{
+        const topics = await Topic.find().populate('contentTypes');
+        res.send(topics);
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(400).send(error);
+    }
+  },
+  
+  getTopicByName: async (req, res) => {
+    try {
+      const { name } = req.params;
+      const topic = await Topic.findOne({name}).populate('contentTypes');
+      res.send(topic);
     } catch (error) {
       res.status(400).send(error);
     }
   },
+
   getTopicById: async (req, res) => {
     try {
       const { id } = req.params;
