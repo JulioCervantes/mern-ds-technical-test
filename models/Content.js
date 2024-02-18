@@ -52,3 +52,5 @@ contentSchema.plugin(timestamp);
 contentSchema.plugin(deleteStrategy, { overrideMethods: 'all' });
 
 const Content = mongoose.model('Content', contentSchema);
+
+module.exports = Content;

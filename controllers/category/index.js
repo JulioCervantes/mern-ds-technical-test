@@ -25,6 +25,7 @@ const categoryController = {
       await category.save();
       res.status(201).send({ created: true });
     } catch (error) {
+      console.log(error);
       res.status(400).send(error);
     }
   },

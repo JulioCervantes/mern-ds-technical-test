@@ -3,7 +3,7 @@ const Topic = require('../../models/Topic');
 const topicController = {
   getTopics: async (req, res) => {
     try {
-      const topics = await Topic.find();
+      const topics = await Topic.find().populate('contentTypes');
       res.send(topics);
     } catch (error) {
       res.status(400).send(error);
@@ -12,19 +12,22 @@ const topicController = {
   getTopicById: async (req, res) => {
     try {
       const { id } = req.params;
-      const topic = await Topic.findById(id);
+      const topic = await Topic.findById(id).populate('contentTypes');
       res.send(topic);
     } catch (error) {
       res.status(400).send(error);
     }
   },
-  createTopic: async (req, res) => {
+  createTopic: async (req, res ) => {
     try {
-      const { name, contentTypes, coverImage, permissions } = req.body;
-      const topic = new Topic({ name, contentTypes, coverImage, permissions });
+      const { name, categories: contentTypes, permissions } = req.body;
+      const coverImage = req.file.buffer.toString('base64');
+      let contentTypesAsArray = contentTypes.split(',');
+      const topic = new Topic({ name, contentTypes: contentTypesAsArray, coverImage, permissions });
       await topic.save();
       res.status(201).send({ created: true });
     } catch (error) {
+      console.log(error);
       res.status(400).send(error);
     }
   },

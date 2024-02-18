@@ -20,16 +20,18 @@ const contentController = {
       res.status(400).send(error);
     }
   },
-  uploadContent: async (req, res, fileBuffer) => {
+  uploadContent: async (req, res) => {
     try {
+      console.log({req});
       const { title, topicId } = req.body;
-      let data = req.body.data || fileBuffer.toString('base64');
+      let data = req.file.buffer.toString('base64');;
       const jwtDecoded = token.decodeBearerToken(req);
       const { userId } = jwtDecoded;
       const content = new Content({ title, topicId, authorId: userId, data });
       await content.save();
       res.status(201).send({ created: true });
     } catch (error) {
+      console.log(error);
       res.status(400).send(error);
     }
   },
