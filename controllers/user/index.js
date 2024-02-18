@@ -26,10 +26,12 @@ const userController = {
   },
   login: async (req, res) => {
     try {
-      const { email, password } = req.body;
-      const user = await User.findByCredentials(email, password);
+      const { username, password } = req.body;
+      const user = await User.findOne({ username });
+      if (!user) return res.status(400).send({message:'Nombre de usuario o contraseña incorrectos', code: 'DS-002'});
+      const validPassword = await bcrypt.compare(password, user.password);
       const jwtToken = token.get(user);
-      res.send(200,{token: jwtToken});
+      res.status(200).send({token: jwtToken});
     } catch (error) {
       res.status(400).send(error);
     }
