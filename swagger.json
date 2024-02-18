@@ -1,0 +1,515 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Documentation",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "summary": "Register a new user",
+        "tags": ["Auth"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRegister"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User registered successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "User login",
+        "tags": ["Auth"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged in successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/category/": {
+      "get": {
+        "summary": "Get all categories",
+        "tags": ["Category"],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new category",
+        "tags": ["Category"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Category created successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/category/{id}": {
+      "get": {
+        "summary": "Get category by ID",
+        "tags": ["Category"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update category by ID",
+        "tags": ["Category"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category updated successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete category by ID",
+        "tags": ["Category"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category deleted successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/content/": {
+      "get": {
+        "summary": "Get all contents",
+        "tags": ["Content"],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "post": {
+        "summary": "Upload content",
+        "tags": ["Content"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Content"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Content uploaded successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/content/{id}": {
+      "get": {
+        "summary": "Get content by ID",
+        "tags": ["Content"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update content by ID",
+        "tags": ["Content"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Content"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Content updated successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete content by ID",
+        "tags": ["Content"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Content deleted successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/topic/": {
+      "get": {
+        "summary": "Get all topics",
+        "tags": ["Topic"],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new topic",
+        "tags": ["Topic"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Topic"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Topic created successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/topic/{id}": {
+      "get": {
+        "summary": "Get topic by ID",
+        "tags": ["Topic"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update topic by ID",
+        "tags": ["Topic"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Topic"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Topic updated successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete topic by ID",
+        "tags": ["Topic"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Topic deleted successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserRegister": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "sourceType": {
+          "type": "string"
+        }
+      }
+    },
+    "Content": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "topicId": {
+          "type": "string"
+        },
+        "authorId": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "Topic": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "contentTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "coverImage": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "object",
+          "properties": {
+            "canRead": {
+              "type": "object",
+              "properties": {
+                "admin": {
+                  "type": "boolean"
+                },
+                "reader": {
+                  "type": "boolean"
+                },
+                "creator": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "canCreate": {
+              "type": "object",
+              "properties": {
+                "admin": {
+                  "type": "boolean"
+                },
+                "reader": {
+                  "type": "boolean"
+                },
+                "creator": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "canUpdate": {
+              "type": "object",
+              "properties": {
+                "admin": {
+                  "type": "boolean"
+                },
+                "reader": {
+                  "type": "boolean"
+                },
+                "creator": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "canDelete": {
+              "type": "object",
+              "properties": {
+                "admin": {
+                  "type": "boolean"
+                },
+                "reader": {
+                  "type": "boolean"
+                },
+                "creator": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

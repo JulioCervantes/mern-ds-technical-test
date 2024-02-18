@@ -47,7 +47,7 @@ const contentController = {
   getContentByTitle: async (req, res) => {
     try {
       const { title } = req.params;
-      const content = await Content.findOne({ title });
+      const content = await Content.findOne({ title }).populate('authorId', 'username');
       res.send(content);
     } catch (error) {
       console.log(error);

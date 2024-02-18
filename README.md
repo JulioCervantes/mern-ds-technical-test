@@ -1,9 +1,29 @@
-# Create admin user
-For create one admin user you can use the script: create-super-admin-user.js
+# Instalación
 
-From root folder you can execute:
+Configurar las variables de entorno en el archivo .env
+
+```
+MONGODB_URI=mongodb://localhost:27017/test
+SOCKET_SERVER_URL=http://localhost:5000
+JWT_SECRET=secret
+```
+
+Instalar dependencias
+
+```
+npm install
+```
+
+Iniciar aplicación
+```
+npm start
+```
+
+
+# Crear usuario administrador
+Se puede crear un usuario administrador
+utilizando el script create-super-admin-user.js
 ```
 cd scripts
-node create-super-admin-user.js -u admin -p admin -email admin@support.com
+node create-super-admin-user -u demo -p demo -email demo@demo.com
 ```
-One time the first admin was create you can use this token to create another admin account from API endpoint: '/auht/register'

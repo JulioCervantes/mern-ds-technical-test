@@ -6,6 +6,8 @@ const topicRoutes = require('./routes/topic');
 const contentRoutes = require('./routes/content');
 const notFound = require('./middlewares/not-found');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 require('dotenv').config();
 
@@ -16,6 +18,7 @@ const DEFAULT_ORIGIN = process.env.DEFAULT_ORIGIN || 'http://localhost:5173';
 app.use(cors({origin: DEFAULT_ORIGIN}));
 
 app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/auth',auth);
 app.use('/category',categoryRoutes);
