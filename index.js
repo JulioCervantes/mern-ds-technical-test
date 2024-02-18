@@ -37,3 +37,5 @@ app.use(notFound);
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 })
+
+module.exports = app;
